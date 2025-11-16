@@ -19,3 +19,4 @@ El sistema analiza tres variables fundamentales:
 Democratizar el acceso a la asesoría financiera mediante un sistema objetivo, consistente y disponible 24/7 que ayude a inversionistas novatos a tomar decisiones fundamentadas.
 
 ## 🏗️ Arquitectura del Sistema
+Stack Tecnológico: * Backend: Python, Flask, SQLAlchemy * Base de Datos: PostgreSQL * Frontend: HTML, CSS (Tailwind), JavaScript
