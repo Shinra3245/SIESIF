@@ -15,3 +15,7 @@ Thumbs.db
 # Archivos de IDE
 .vscode/
 .idea/
+
+# Archivos de base de datos locales
+*.db
+*.sqlite3
