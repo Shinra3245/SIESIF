@@ -1,0 +1,273 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background-color: rgba(60, 20, 20, 0.95);
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.logo svg {
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    transition: opacity 0.3s ease;
+}
+
+.nav-links a:hover {
+    opacity: 0.8;
+}
+
+/* Secciones generales */
+section {
+    scroll-margin-top: 80px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 60px;
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: 100vh;
+    background-image: url('../images/banner_principal.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Hero Content */
+.hero-content {
+    flex: 1;
+}
+
+.main-title {
+    font-size: 140px;
+    font-weight: 700;
+    letter-spacing: 8px;
+    margin-bottom: 20px;
+    line-height: 1;
+}
+
+.subtitle {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    opacity: 0.95;
+}
+
+/* Info Box */
+.info-box {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 400px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.info-text {
+    font-size: 20px;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* Sección Introducción */
+.intro-section {
+    background-color: #f5f0eb;
+    padding: 100px 0;
+    color: #1a1a1a;
+}
+
+.section-title {
+    font-size: 36px;
+    font-weight: 400;
+    margin-bottom: 60px;
+    line-height: 1.4;
+    max-width: 100%;
+    text-align: left;
+}
+
+.intro-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+}
+
+.intro-column p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+    text-align: left;
+}
+
+.cta-button {
+    background-color: #4a1a1a;
+    color: white;
+    border: none;
+    padding: 16px 50px;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    display: block;
+    margin: 0;
+}
+
+.cta-button:hover {
+    background-color: #3a1010;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 26, 26, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .main-title {
+        font-size: 100px;
+    }
+    
+    .subtitle {
+        font-size: 24px;
+    }
+    
+    .intro-content {
+        gap: 40px;
+    }
+}
+
+@media (max-width: 968px) {
+    .content-wrapper {
+        flex-direction: column;
+        gap: 60px;
+        text-align: center;
+    }
+    
+    .main-title {
+        font-size: 80px;
+    }
+    
+    .subtitle {
+        font-size: 20px;
+    }
+    
+    .info-box {
+        max-width: 100%;
+    }
+    
+    .intro-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 20px 30px;
+    }
+    
+    .nav-links {
+        gap: 20px;
+    }
+    
+    .nav-links a {
+        font-size: 14px;
+    }
+    
+    .container,
+    .content-wrapper {
+        padding: 0 30px;
+    }
+    
+    .main-title {
+        font-size: 60px;
+        letter-spacing: 4px;
+    }
+    
+    .subtitle {
+        font-size: 18px;
+    }
+    
+    .info-box {
+        padding: 30px;
+    }
+    
+    .info-text {
+        font-size: 18px;
+    }
+    
+    .intro-section {
+        padding: 60px 0;
+    }
+    
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 40px;
+    }
+    
+    .intro-column p {
+        font-size: 15px;
+    }
+}
