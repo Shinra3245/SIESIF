@@ -1,6 +1,8 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from config import Config
+from motor_inferencia import calcular_puntaje, clasificar_perfil
+from reglas_logicas import aplicar_reglas_recomendacion
 
 # --- CAMBIO 1: Importa 'db' y los modelos desde 'models.py' ---
 from models import db, InstrumentoFinanciero, Usuario, PerfilInversionista, EvaluacionRiesgo, Cuestionario, Pregunta, RespuestaUsuario, Recomendacion
@@ -8,18 +10,14 @@ from models import db, InstrumentoFinanciero, Usuario, PerfilInversionista, Eval
 # --- Inicialización ---
 app = Flask(__name__)
 app.config.from_object(Config)
-
-# --- CAMBIO 2: Conecta 'db' a tu 'app' usando init_app ---
 db.init_app(app)
-# (La línea 'db = SQLAlchemy(app)' se elimina)
-
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-# --- CAMBIO 3: La importación de modelos ya no es necesaria aquí ---
-# (La línea 'from models import *' se elimina)
+
+
 
 # --- Endpoints de la API ---
-# (Esta parte no cambia)
+
 @app.route('/')
 def health_check():
     """
@@ -39,8 +37,45 @@ def get_instrumentos():
     except Exception as e:
         return jsonify({"error": f"Error al consultar la base de datos: {str(e)}"}), 500
 
+# -- nuevo endpoint --
+@app.route('/api/evaluar-perfil', methods=['POST'])
+def evaluar_perfil():
+    """
+    Recibe las respuestas del cuestionario, calcula el perfil
+    y devuelve recomendaciones personalizadas.
+    """
+    try:
+        # 1. Obtener datos del JSON
+        data = request.json
+        respuestas = data.get('respuestas')
+
+        if not respuestas:
+            return jsonify({"error": "Faltan las respuestas"}), 400
+
+        # 2. Usar el Motor de Inferencia 
+        puntaje = calcular_puntaje(respuestas)
+        perfil = clasificar_perfil(puntaje)
+
+        # 3. Aplicar Reglas Lógicas para obtener instrumentos 
+        recomendaciones_obj = aplicar_reglas_recomendacion(perfil)
+        
+        # Convertir objetos DB a diccionarios JSON
+        recomendaciones_json = [inst.to_dict() for inst in recomendaciones_obj]
+
+        # 4. Responder
+        return jsonify({
+            "puntaje": puntaje,
+            "perfil": perfil,
+            "total_recomendaciones": len(recomendaciones_json),
+            "recomendaciones": recomendaciones_json
+        }), 200
+
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+    except Exception as e:
+        return jsonify({"error": f"Error interno: {str(e)}"}), 500
 # --- Ejecución ---
-# (Esta parte no cambia)
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
