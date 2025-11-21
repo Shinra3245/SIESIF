@@ -1,11 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style_cuestionario.css">
     <title>Cuestionario</title>
 </head>
+
 <body>
-    
+    <header class="navbar">
+        <div class="logo">
+            <svg width="40" height="40" viewBox="0 0 40 40">
+                <path d="M10 5 L20 15 L30 5 L30 15 L20 25 L10 15 Z" fill="white" />
+            </svg>
+        </div>
+        <nav class="nav-links">
+            <a href="cuestionario.html">Sistema Experto</a>
+            <a href="#puntaje">Puntaje</a>
+        </nav>
+    </header>
+
+    <!-- Sección Hero -->
+    <section class="hero-section">
+        <div class="content-wrapper">
+            <div class="hero-content">
+                <p class="subtitle">En nuestro Sistema Experto, estamos comprometidos con el servicio excepcional y los
+                    resultados exitosos</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección INFORMATIVA -->
+    <section class="intro-section">
+        <div class="container">
+            <h2 class="section-title"></h2>
+
+            <div class="intro-content">
+                <div class="intro-column">
+                    <h3>20+</h3>
+                    <p>casos reales de éxito</p>
+                </div>
+
+                <div class="intro-column">
+                    <h3>90%</h3>
+                    <p>seguro de inversión</p>
+                </div>
+
+                <div class="intro-column">
+                    <h3>120+</h3>
+                    <p>nuevos inversionistas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Cuestionario -->
+    <section class="questionnaire-section">
+        <div class="container">
+            <div class="questionnaire-intro">
+                <p class="questionnaire-text">Contesta el cuestionario para que conozcas la forma ideal para que
+                    empieces a invertir tu dinero</p>
+            </div>
+
+            <div class="question-container" id="questionContainer">
+                <!-- Formulario Dinámico -->
+                <form id="questionnaireForm">
+                    <div class="question-card">
+                        <h3 class="question-number" id="questionNumber">1.</h3>
+                        <h4 class="question-title" id="questionTitle">¿El plazo en el cual piensa lograr sus objetivos
+                            de inversión es?</h4>
+
+                        <div class="options-box" id="optionsContainer">
+                            <label class="option-item">
+                                <input type="radio" name="answer" value="1" class="option-radio">
+                                <span class="option-text">a) Menos de 1 año (1)</span>
+                            </label>
+
+                            <label class="option-item">
+                                <input type="radio" name="answer" value="2" class="option-radio">
+                                <span class="option-text">b) Entre 1 y 3 años (2)</span>
+                            </label>
+
+                            <label class="option-item">
+                                <input type="radio" name="answer" value="3" class="option-radio">
+                                <span class="option-text">c) Entre 3 y 5 años (3)</span>
+                            </label>
+
+                            <label class="option-item">
+                                <input type="radio" name="answer" value="4" class="option-radio">
+                                <span class="option-text">d) Más de 5 años (4)</span>
+                            </label>
+                        </div>
+
+                        <button type="button" class="btn-siguiente" id="btnNext">Siguiente</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section><!-- Sección Cuestionario -->
+
+    <!-- Sección Imagen sin texto -->
+    <section class="image-section">
+        <!-- La imagen será el fondo de esta sección -->
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <svg width="50" height="50" viewBox="0 0 40 40">
+                        <path d="M10 5 L20 15 L30 5 L30 15 L20 25 L10 15 Z" fill="#1a1a1a" />
+                    </svg>
+                </div>
+                <div class="footer-brand">
+                    <h2 class="footer-title">SIESIF</h2>
+                </div>
+            </div>
+
+            <p class="footer-tagline">Experiencia única y diferente para aprender a invertir</p>
+
+            <div class="footer-content">
+                <div class="footer-column">
+                    <p>contacto@siesif.com</p>
+                    <p>(52) 123-4567</p>
+                </div>
+
+                <div class="footer-column">
+                    <p>Celaya Guanajuato</p>
+                    <p>García Cubas 1200</p>
+                    <p>Instituto Tecnológico De Celaya, CP</p>
+                    <p>38010</p>
+                </div>
+
+                <div class="footer-column">
+                    <p>Instagram</p>
+                    <p>Facebook</p>
+                    <p>LinkedIn</p>
+                    <p>Bluesky</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>SIESIF</p>
+                <p>© 2025 All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/cuestionario.js"></script>
 </body>
+
 </html>
