@@ -150,6 +150,45 @@
     </footer>
 
     <script src="js/cuestionario.js"></script>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const optionItems = document.querySelectorAll('.option-item');
+        const radioButtons = document.querySelectorAll('.option-radio');
+
+        optionItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // 1. Deseleccionar todos los elementos
+                optionItems.forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+
+                // 2. Seleccionar el elemento clickeado
+                this.classList.add('selected');
+
+                // 3. Marcar el radio button correspondiente (si aún no lo está)
+                const radio = this.querySelector('.option-radio');
+                if (radio) {
+                    radio.checked = true;
+                }
+            });
+
+            // Opcional: Asegura que el estado se refleje si se selecciona con el teclado/tab
+            const radio = item.querySelector('.option-radio');
+            if (radio) {
+                radio.addEventListener('change', function() {
+                    optionItems.forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    if (this.checked) {
+                        item.classList.add('selected');
+                    }
+                });
+            }
+        });
+    });
+</script>
 </body>
 
 </html>

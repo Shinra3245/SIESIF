@@ -186,6 +186,7 @@ section {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -263,6 +264,115 @@ section {
 
 .btn-siguiente:active {
     transform: translateY(0);
+}
+
+/* Efecto cuando se selecciona una opción */
+.option-item.selected {
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.option-radio {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+    cursor: pointer;
+    accent-color: white;
+    flex-shrink: 0;
+}
+
+.option-text {
+    font-size: 20px;
+    font-weight: 400;
+    cursor: pointer;
+    user-select: none;
+}
+
+.btn-siguiente {
+    background-color: white;
+    color: #6b3030;
+    border: none;
+    padding: 14px 45px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+.btn-siguiente:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+}
+
+.btn-siguiente:active {
+    transform: translateY(0);
+}
+
+.question-card {
+    animation: fadeIn 0.5s ease-in;
+    text-align: center;
+}
+
+/* Opcional: Asegúrate de que las opciones estén centradas como bloque */
+.options-box {
+    background-color: rgba(139, 90, 83, 0.5);
+    border-radius: 16px;
+    padding: 50px 60px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(10px);
+    display: inline-block;
+}
+
+/* Modifica el contenedor de la opción para que se vea como un "recuadro" */
+.option-item {
+    display: flex;
+    align-items: center;
+    padding: 18px 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    border-radius: 10px;
+    margin: 15px 0;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+    text-align: left;
+}
+
+/* Estilo para el recuadro cuando la opción está seleccionada */
+.option-item.selected {
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.option-radio {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* NUEVO: Estilo para simular el radio button o checkbox */
+.option-item::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin-right: 15px;
+    flex-shrink: 0;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* NUEVO: Rellena el "radio button" cuando está seleccionado */
+.option-item.selected::before {
+    background-color: white;
+    border-color: white;
 }
 
 /* Sección Imagen sin texto */
@@ -344,19 +454,23 @@ section {
     color: #1a1a1a;
 }
 
-
 /* Responsive Design */
-@media (max-width: 1200px) {
-    .main-title {
-        font-size: 100px;
+@media (max-width: 968px) {
+    .questionnaire-text {
+        font-size: 20px;
     }
-    
-    .subtitle {
-        font-size: 24px;
+
+    .question-title {
+        font-size: 20px;
     }
-    
-    .intro-content {
-        gap: 40px;
+
+    .options-box {
+        padding: 40px 40px;
+        max-width: 100%;
+    }
+
+    .option-text {
+        font-size: 18px;
     }
 }
 
@@ -366,39 +480,87 @@ section {
         gap: 60px;
         text-align: center;
     }
-    
+
     .main-title {
         font-size: 80px;
     }
-    
+
     .subtitle {
         font-size: 20px;
     }
-    
+
     .info-box {
         max-width: 100%;
     }
-    
+
     .intro-content {
         grid-template-columns: 1fr;
         gap: 30px;
     }
-    
+
     .section-title {
         font-size: 28px;
     }
-    
+
     .offer-title {
         font-size: 38px;
     }
-    
+
     .offer-highlight {
         font-size: 32px;
     }
-    
+
     .offer-grid {
         grid-template-columns: 1fr;
         gap: 40px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .questionnaire-section {
+        padding: 60px 0 80px;
+    }
+
+    .questionnaire-intro {
+        margin-bottom: 40px;
+    }
+
+    .questionnaire-text {
+        font-size: 18px;
+        padding: 0 20px;
+    }
+
+    .question-number {
+        font-size: 24px;
+    }
+
+    .question-title {
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+
+    .options-box {
+        padding: 30px 25px;
+        margin-bottom: 30px;
+    }
+
+    .option-item {
+        padding: 15px 20px;
+    }
+
+    .option-text {
+        font-size: 16px;
+    }
+
+    .option-radio {
+        width: 18px;
+        height: 18px;
+    }
+
+    .btn-siguiente {
+        padding: 12px 40px;
+        font-size: 15px;
     }
 }
 
@@ -406,104 +568,105 @@ section {
     .navbar {
         padding: 20px 30px;
     }
-    
+
     .nav-links {
         gap: 20px;
     }
-    
+
     .nav-links a {
         font-size: 14px;
     }
-    
+
     .container,
     .content-wrapper {
         padding: 0 30px;
     }
-    
+
     .main-title {
         font-size: 60px;
         letter-spacing: 4px;
     }
-    
+
     .subtitle {
         font-size: 18px;
     }
-    
+
     .info-box {
         padding: 30px;
     }
-    
+
     .info-text {
         font-size: 18px;
     }
-    
+
     .intro-section {
         padding: 60px 0;
     }
-    
+
     .section-title {
         font-size: 24px;
         margin-bottom: 40px;
     }
-    
+
     .intro-column p {
         font-size: 15px;
     }
-    
+
     .offer-section {
         padding: 80px 0;
     }
-    
+
     .offer-content {
         padding: 0 30px;
     }
-    
+
     .offer-grid {
         grid-template-columns: 1fr;
         gap: 30px;
         margin-bottom: 40px;
     }
-    
+
     .offer-subtitle {
         font-size: 18px;
     }
-    
+
     .offer-title {
         font-size: 28px;
     }
-    
+
     .offer-highlight {
         font-size: 24px;
     }
-    
+
     .image-section {
         min-height: 40vh;
     }
+
     .footer {
         padding: 60px 0 30px;
     }
-    
+
     .footer-top {
         flex-direction: column;
         align-items: flex-start;
         gap: 20px;
     }
-    
+
     .footer-title {
         font-size: 48px;
     }
-    
+
     .footer-tagline {
         font-size: 15px;
         margin-bottom: 40px;
     }
-    
+
     .footer-content {
         grid-template-columns: 1fr;
         gap: 30px;
         margin-bottom: 50px;
     }
-    
+
     .footer-bottom {
         flex-direction: column;
         gap: 10px;

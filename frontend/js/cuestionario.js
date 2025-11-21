@@ -53,7 +53,7 @@ const questionTitle = document.getElementById('questionTitle');
 const optionsContainer = document.getElementById('optionsContainer');
 const btnNext = document.getElementById('btnNext');
 
-// Función para mostrar la pregunta actual
+// Función para mostrar la pregunta actual (MODIFICADA)
 function showQuestion() {
     const current = questions[currentQuestionIndex];
     
@@ -90,6 +90,43 @@ function showQuestion() {
     setTimeout(() => {
         questionCard.style.animation = 'fadeIn 0.5s ease-in';
     }, 10);
+
+    // --- CÓDIGO CLAVE AÑADIDO / MOVIDO AQUÍ ---
+    // 1. Obtener todas las nuevas opciones (que acaban de ser insertadas)
+    const optionItems = optionsContainer.querySelectorAll('.option-item');
+
+    // 2. Aplicar el Event Listener a cada nueva opción
+    optionItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Deseleccionar todas las opciones de la pregunta actual
+            optionItems.forEach(opt => {
+                opt.classList.remove('selected');
+            });
+
+            // Seleccionar el elemento clickeado (iluminar el recuadro)
+            this.classList.add('selected');
+
+            // Marcar el radio button real (aunque esté invisible)
+            const radio = this.querySelector('.option-radio');
+            if (radio) {
+                radio.checked = true;
+            }
+        });
+        
+        // También maneja el caso de que el radio cambie (por ejemplo, con tab/teclado)
+        const radio = item.querySelector('.option-radio');
+        if (radio) {
+            radio.addEventListener('change', function() {
+                optionItems.forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                if (this.checked) {
+                    item.classList.add('selected');
+                }
+            });
+        }
+    });
+    // --- FIN DEL CÓDIGO CLAVE ---
 }
 
 // Función para ir a la siguiente pregunta
