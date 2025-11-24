@@ -71,296 +71,87 @@ section {
     padding-bottom: 80px;
 }
 
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
-}
-
-.content-wrapper {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Hero Content */
-.hero-content {
-    flex: 1;
-}
-
-.main-title {
-    font-size: 140px;
-    font-weight: 700;
-    letter-spacing: 8px;
-    margin-bottom: 20px;
-    line-height: 1;
-}
-
-.subtitle {
-    font-size: 28px;
-    font-weight: 300;
-    letter-spacing: 1px;
-    opacity: 0.95;
-}
-
-/* Info Box */
-.info-box {
-    background-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    padding: 40px;
-    border-radius: 8px;
-    max-width: 400px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.info-text {
-    font-size: 20px;
-    line-height: 1.6;
-    font-weight: 400;
-}
-
-/* Sección Introducción */
-.intro-section {
-    background-color: #f5f0eb;
+/* Estilos para la nueva sección de Resultados (Perfil) */
+.results-section {
+    background-color: #1F0808; /* El mismo color del cuestionario */
     padding: 100px 0;
-    color: #1a1a1a;
-}
-
-.section-title {
-    font-size: 36px;
-    font-weight: 400;
-    margin-bottom: 60px;
-    line-height: 1.4;
-    max-width: 100%;
-    text-align: left;
-}
-
-.intro-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    margin-bottom: 60px;
-}
-
-.intro-column p {
-    font-size: 16px;
-    line-height: 1.8;
-    color: #333;
-    text-align: left;
-}
-
-.cta-button {
-    background-color: #4a1a1a;
     color: white;
-    border: none;
-    padding: 16px 50px;
-    font-size: 16px;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    display: block;
-    margin: 0;
 }
 
-.cta-button:hover {
-    background-color: #3a1010;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(74, 26, 26, 0.3);
-}
-
-
-/* Sección Imagen sin texto */
-.image-section {
-    min-height: 60vh;
-    background-image: url('../images/banner_dineros.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-
-/* Sección ¿Qué ofrecemos? */
-.offer-section {
-    background-color: #6b3030;
-    padding: 120px 0;
-    color: #F7F4EB;
-    position: relative;
-}
-
-.offer-grid {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 80px;
-    margin-bottom: 60px;
-}
-
-.offer-left {
-    display: flex;
-    align-items: flex-start;
-}
-
-.offer-subtitle {
-    font-size: 20px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    margin: 0;
-    font-size: 30px;
-
-}
-
-.offer-right {
-    display: flex;
-    flex-direction: column;
-}
-
-.offer-title {
-    font-size: 56px;
-    font-weight: 400;
-    line-height: 1.3;
-    margin-bottom: 40px;
-    margin-top: 0;
-}
-
-.offer-highlight {
-    font-size: 48px;
-    font-weight: 300;
-    color: #FFB48A;
-    margin: 0;
-    font-weight: bold;
-}
-
-.cta-button-white {
-    background-color: #F7F4EB;
-    color: #6b3030;
-    border: none;
-    padding: 16px 50px;
-    font-size: 16px;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    display: block;
-    margin: 0;
-}
-
-.cta-button-white:hover {
-    background-color: #f0f0f0;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-
-/* Sección Imagen sin texto 2 */
-.image-section-2 {
-    min-height: 60vh;
-    background-image: url('../images/banner_grupo.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-/* Sección Testimonios */
-.testimonials-section {
-    background-color: #f5f0eb;
-    padding: 100px 0;
-    color: #1a1a1a;
-    text-align: center;
-}
-
-.testimonials-title {
+.profile-section-title {
+    /* Sobrescribe el estilo de .section-title si es necesario, pero usa el existente */
     font-size: 36px;
     font-weight: 400;
-    margin-bottom: 30px;
+    margin-bottom: 80px;
+    text-align: center;
+    color: white; /* Asegúrate de que el título sea blanco */
 }
 
-.testimonials-intro {
-    font-size: 16px;
-    line-height: 1.6;
-    max-width: 700px;
-    margin: 0 auto 60px;
-    color: #333;
-}
-
-.testimonial-card {
-    background-color: #e8e3dd;
-    border-radius: 12px;
-    padding: 60px 80px;
-    margin: 0 auto 60px;
-    max-width: 900px;
-}
-
-.testimonial-text {
-    font-size: 24px;
-    line-height: 1.6;
-    margin-bottom: 30px;
-    color: #1a1a1a;
-}
-
-.testimonial-author {
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 40px;
-    color: #1a1a1a;
-}
-
-.testimonial-dots {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-}
-
-.testimonials-section .cta-button {
+.profile-grid {
+    max-width: 1000px;
     margin: 0 auto;
 }
 
-.dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: #999;
-    display: inline-block;
-    transition: background-color 0.3s ease;
+.profile-item {
+    display: flex;
+    align-items: flex-start; /* Alinea el número con la parte superior del texto */
+    gap: 40px;
+    padding: 30px 0;
 }
 
-.dot.active {
-    background-color: #1a1a1a;
+.profile-number {
+    font-size: 160px; /* Tamaño grande para el número */
+    font-weight: 300; /* Fuente delgada para el número */
+    color: rgba(255, 255, 255, 0.4); /* Color gris/transparente */
+    line-height: 1;
+    flex-shrink: 0; /* Evita que el número se encoja */
 }
 
-.dot-btn {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: #1a1a1a;
-    padding: 5px 10px;
-    transition: opacity 0.3s ease;
+.profile-content {
+    padding-top: 15px; /* Ajuste para alinear la línea base del texto con el número */
 }
 
-.dot-btn:hover {
-    opacity: 0.7;
+.profile-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: white;
 }
 
-.testimonials-footer {
-    font-size: 16px;
-    line-height: 1.6;
-    max-width: 600px;
-    margin: 0 auto 40px;
-    color: #333;
+.profile-description {
+    font-size: 18px;
+    line-height: 1.7;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
 }
 
+.profile-separator {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Separador sutil */
+    margin: 40px 0;
+}
 
+/* Adaptación para pantallas pequeñas */
+@media (max-width: 768px) {
+    .profile-item {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .profile-number {
+        font-size: 100px;
+        text-align: left;
+        padding-bottom: 10px;
+    }
+
+    .profile-content {
+        padding-top: 0;
+    }
+
+    .profile-section-title {
+        margin-bottom: 50px;
+    }
+}
 
 /* Footer */
 .footer {

@@ -46,6 +46,7 @@ body {
     opacity: 0.8;
 }
 
+
 /* Secciones generales */
 section {
     scroll-margin-top: 80px;
@@ -57,10 +58,11 @@ section {
     padding: 0 60px;
 }
 
+
 /* Hero Section */
 .hero-section {
     min-height: 100vh;
-    background-image: url('../images/banner_principal.jpg');
+    background-image: url('../images/banner_grupo2.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -113,27 +115,13 @@ section {
     opacity: 0.95;
 }
 
-/* Info Box */
-.info-box {
-    background-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    padding: 40px;
-    border-radius: 8px;
-    max-width: 400px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.info-text {
-    font-size: 20px;
-    line-height: 1.6;
-    font-weight: 400;
-}
-
-/* Sección Introducción */
+/* Sección Informativa - Tres columnas */
 .intro-section {
     background-color: #f5f0eb;
     padding: 100px 0;
     color: #1a1a1a;
+    font-size: 90px;
+    color: #430D06;
 }
 
 .section-title {
@@ -141,226 +129,260 @@ section {
     font-weight: 400;
     margin-bottom: 60px;
     line-height: 1.4;
-    max-width: 100%;
-    text-align: left;
+    text-align: center;
 }
 
 .intro-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 60px;
-    margin-bottom: 60px;
+}
+
+.intro-column {
+    text-align: center;
 }
 
 .intro-column p {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.8;
     color: #333;
-    text-align: left;
 }
 
-.cta-button {
-    background-color: #4a1a1a;
+
+/* Sección Cuestionario */
+.questionnaire-section {
+    background-color: #6b3030;
+    padding: 80px 0 100px;
     color: white;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.questionnaire-intro {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.questionnaire-text {
+    font-size: 24px;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+.question-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.question-card {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.question-number {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.question-title {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 40px;
+    line-height: 1.4;
+}
+
+.options-box {
+    background-color: rgba(139, 90, 83, 0.5);
+    border-radius: 16px;
+    padding: 50px 60px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(10px);
+}
+
+.option-item {
+    display: flex;
+    align-items: center;
+    padding: 18px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.option-item:hover {
+    transform: translateX(5px);
+}
+
+.option-radio {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+    cursor: pointer;
+    accent-color: white;
+}
+
+.option-text {
+    font-size: 20px;
+    font-weight: 400;
+    cursor: pointer;
+    user-select: none;
+}
+
+.btn-siguiente {
+    background-color: white;
+    color: #6b3030;
     border: none;
-    padding: 16px 50px;
+    padding: 14px 45px;
     font-size: 16px;
+    font-weight: 500;
     border-radius: 30px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-weight: 500;
     display: block;
-    margin: 0;
+    margin: 0 auto;
 }
 
-.cta-button:hover {
-    background-color: #3a1010;
+.btn-siguiente:hover {
+    background-color: #f0f0f0;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(74, 26, 26, 0.3);
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
 }
 
+.btn-siguiente:active {
+    transform: translateY(0);
+}
+
+/* Efecto cuando se selecciona una opción */
+.option-item.selected {
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.option-radio {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+    cursor: pointer;
+    accent-color: white;
+    flex-shrink: 0;
+}
+
+.option-text {
+    font-size: 20px;
+    font-weight: 400;
+    cursor: pointer;
+    user-select: none;
+}
+
+.btn-siguiente {
+    background-color: white;
+    color: #6b3030;
+    border: none;
+    padding: 14px 45px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+.btn-siguiente:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+}
+
+.btn-siguiente:active {
+    transform: translateY(0);
+}
+
+.question-card {
+    animation: fadeIn 0.5s ease-in;
+    text-align: center;
+}
+
+/* Opcional: Asegúrate de que las opciones estén centradas como bloque */
+.options-box {
+    background-color: rgba(139, 90, 83, 0.5);
+    border-radius: 16px;
+    padding: 50px 60px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(10px);
+    display: inline-block;
+}
+
+/* Modifica el contenedor de la opción para que se vea como un "recuadro" */
+.option-item {
+    display: flex;
+    align-items: center;
+    padding: 18px 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    border-radius: 10px;
+    margin: 15px 0;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+    text-align: left;
+}
+
+/* Estilo para el recuadro cuando la opción está seleccionada */
+.option-item.selected {
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.option-radio {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* NUEVO: Estilo para simular el radio button o checkbox */
+.option-item::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin-right: 15px;
+    flex-shrink: 0;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* NUEVO: Rellena el "radio button" cuando está seleccionado */
+.option-item.selected::before {
+    background-color: white;
+    border-color: white;
+}
 
 /* Sección Imagen sin texto */
 .image-section {
     min-height: 60vh;
-    background-image: url('../images/banner_dineros.jpg');
+    background-image: url('../images/banner_cuestionario.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
-
-
-/* Sección ¿Qué ofrecemos? */
-.offer-section {
-    background-color: #6b3030;
-    padding: 120px 0;
-    color: #F7F4EB;
-    position: relative;
-}
-
-.offer-grid {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 80px;
-    margin-bottom: 60px;
-}
-
-.offer-left {
-    display: flex;
-    align-items: flex-start;
-}
-
-.offer-subtitle {
-    font-size: 20px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    margin: 0;
-    font-size: 30px;
-
-}
-
-.offer-right {
-    display: flex;
-    flex-direction: column;
-}
-
-.offer-title {
-    font-size: 56px;
-    font-weight: 400;
-    line-height: 1.3;
-    margin-bottom: 40px;
-    margin-top: 0;
-}
-
-.offer-highlight {
-    font-size: 48px;
-    font-weight: 300;
-    color: #FFB48A;
-    margin: 0;
-    font-weight: bold;
-}
-
-.cta-button-white {
-    background-color: #F7F4EB;
-    color: #6b3030;
-    border: none;
-    padding: 16px 50px;
-    font-size: 16px;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    display: block;
-    margin: 0;
-}
-
-.cta-button-white:hover {
-    background-color: #f0f0f0;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-
-/* Sección Imagen sin texto 2 */
-.image-section-2 {
-    min-height: 60vh;
-    background-image: url('../images/banner_grupo.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-/* Sección Testimonios */
-.testimonials-section {
-    background-color: #f5f0eb;
-    padding: 100px 0;
-    color: #1a1a1a;
-    text-align: center;
-}
-
-.testimonials-title {
-    font-size: 36px;
-    font-weight: 400;
-    margin-bottom: 30px;
-}
-
-.testimonials-intro {
-    font-size: 16px;
-    line-height: 1.6;
-    max-width: 700px;
-    margin: 0 auto 60px;
-    color: #333;
-}
-
-.testimonial-card {
-    background-color: #e8e3dd;
-    border-radius: 12px;
-    padding: 60px 80px;
-    margin: 0 auto 60px;
-    max-width: 900px;
-}
-
-.testimonial-text {
-    font-size: 24px;
-    line-height: 1.6;
-    margin-bottom: 30px;
-    color: #1a1a1a;
-}
-
-.testimonial-author {
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 40px;
-    color: #1a1a1a;
-}
-
-.testimonial-dots {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-}
-
-.testimonials-section .cta-button {
-    margin: 0 auto;
-}
-
-.dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: #999;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-}
-
-.dot.active {
-    background-color: #1a1a1a;
-}
-
-.dot-btn {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: #1a1a1a;
-    padding: 5px 10px;
-    transition: opacity 0.3s ease;
-}
-
-.dot-btn:hover {
-    opacity: 0.7;
-}
-
-.testimonials-footer {
-    font-size: 16px;
-    line-height: 1.6;
-    max-width: 600px;
-    margin: 0 auto 40px;
-    color: #333;
-}
-
-
 
 /* Footer */
 .footer {
@@ -433,17 +455,22 @@ section {
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
-    .main-title {
-        font-size: 100px;
+@media (max-width: 968px) {
+    .questionnaire-text {
+        font-size: 20px;
     }
-    
-    .subtitle {
-        font-size: 24px;
+
+    .question-title {
+        font-size: 20px;
     }
-    
-    .intro-content {
-        gap: 40px;
+
+    .options-box {
+        padding: 40px 40px;
+        max-width: 100%;
+    }
+
+    .option-text {
+        font-size: 18px;
     }
 }
 
@@ -453,39 +480,87 @@ section {
         gap: 60px;
         text-align: center;
     }
-    
+
     .main-title {
         font-size: 80px;
     }
-    
+
     .subtitle {
         font-size: 20px;
     }
-    
+
     .info-box {
         max-width: 100%;
     }
-    
+
     .intro-content {
         grid-template-columns: 1fr;
         gap: 30px;
     }
-    
+
     .section-title {
         font-size: 28px;
     }
-    
+
     .offer-title {
         font-size: 38px;
     }
-    
+
     .offer-highlight {
         font-size: 32px;
     }
-    
+
     .offer-grid {
         grid-template-columns: 1fr;
         gap: 40px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .questionnaire-section {
+        padding: 60px 0 80px;
+    }
+
+    .questionnaire-intro {
+        margin-bottom: 40px;
+    }
+
+    .questionnaire-text {
+        font-size: 18px;
+        padding: 0 20px;
+    }
+
+    .question-number {
+        font-size: 24px;
+    }
+
+    .question-title {
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+
+    .options-box {
+        padding: 30px 25px;
+        margin-bottom: 30px;
+    }
+
+    .option-item {
+        padding: 15px 20px;
+    }
+
+    .option-text {
+        font-size: 16px;
+    }
+
+    .option-radio {
+        width: 18px;
+        height: 18px;
+    }
+
+    .btn-siguiente {
+        padding: 12px 40px;
+        font-size: 15px;
     }
 }
 
@@ -493,104 +568,105 @@ section {
     .navbar {
         padding: 20px 30px;
     }
-    
+
     .nav-links {
         gap: 20px;
     }
-    
+
     .nav-links a {
         font-size: 14px;
     }
-    
+
     .container,
     .content-wrapper {
         padding: 0 30px;
     }
-    
+
     .main-title {
         font-size: 60px;
         letter-spacing: 4px;
     }
-    
+
     .subtitle {
         font-size: 18px;
     }
-    
+
     .info-box {
         padding: 30px;
     }
-    
+
     .info-text {
         font-size: 18px;
     }
-    
+
     .intro-section {
         padding: 60px 0;
     }
-    
+
     .section-title {
         font-size: 24px;
         margin-bottom: 40px;
     }
-    
+
     .intro-column p {
         font-size: 15px;
     }
-    
+
     .offer-section {
         padding: 80px 0;
     }
-    
+
     .offer-content {
         padding: 0 30px;
     }
-    
+
     .offer-grid {
         grid-template-columns: 1fr;
         gap: 30px;
         margin-bottom: 40px;
     }
-    
+
     .offer-subtitle {
         font-size: 18px;
     }
-    
+
     .offer-title {
         font-size: 28px;
     }
-    
+
     .offer-highlight {
         font-size: 24px;
     }
-    
+
     .image-section {
         min-height: 40vh;
     }
+
     .footer {
         padding: 60px 0 30px;
     }
-    
+
     .footer-top {
         flex-direction: column;
         align-items: flex-start;
         gap: 20px;
     }
-    
+
     .footer-title {
         font-size: 48px;
     }
-    
+
     .footer-tagline {
         font-size: 15px;
         margin-bottom: 40px;
     }
-    
+
     .footer-content {
         grid-template-columns: 1fr;
         gap: 30px;
         margin-bottom: 50px;
     }
-    
+
     .footer-bottom {
         flex-direction: column;
         gap: 10px;
