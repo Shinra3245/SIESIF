@@ -15,3 +15,6 @@ Flask-CORS==4.0.0
 
 #Para cargar variables de entorno desde el archivo .env
 python-dotenv==1.0.0
+
+# Servidor WSGI necesario para desplegar en Render
+gunicorn==21.2.0

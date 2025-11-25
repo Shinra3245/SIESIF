@@ -76,8 +76,41 @@ def evaluar_perfil():
         return jsonify({"error": f"Error interno: {str(e)}"}), 500
 # --- Ejecución ---
 
+# ... (resto del código arriba igual) ...
+
+def poblar_base_datos():
+    """Función auxiliar para cargar datos si la base está vacía (Para Render)"""
+    if InstrumentoFinanciero.query.first():
+        return # Ya hay datos, no hacer nada
+
+    # Si llegamos aquí, la tabla está vacía. Insertar datos básicos.
+    # (Aquí replicamos los datos clave del script SQL para que la app funcione en vivo)
+    # Solo pondré 2 ejemplos para que veas la lógica, pero idealmente aquí irían los 11
+    from datetime import datetime
+    
+    # Ejemplo rápido (puedes agregar los 11 si quieres que el deploy esté completo)
+    cetes = InstrumentoFinanciero(
+        nombre='CETES', tipo='renta_fija', riesgo='bajo',
+        descripcion='Certificados de la Tesorería. Bonos de corto plazo, ideales para conservadores.',
+        rendimiento_referencial='10-11% anual', horizonte_recomendado='corto', liquidez='alta'
+    )
+    bonos = InstrumentoFinanciero(
+        nombre='Bonos M', tipo='renta_fija', riesgo='bajo_medio',
+        descripcion='Deuda soberana a tasa fija. Plazos largos.',
+        rendimiento_referencial='8-10% anual', horizonte_recomendado='largo', liquidez='alta'
+    )
+    # ... Agregar el resto ...
+    
+    db.session.add(cetes)
+    db.session.add(bonos)
+    db.session.commit()
+    print("Base de datos poblada automáticamente.")
+
+# --- Ejecución ---
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+        # Descomenta la siguiente línea si quieres autollenado en producción
+        # poblar_base_datos() 
     
     app.run(debug=True, port=5000)
