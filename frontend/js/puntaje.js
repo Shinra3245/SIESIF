@@ -92,25 +92,33 @@ function renderInstruments(instrumentos) {
 
     container.style.display = 'block'; // Mostrar la sección
 
-    grid.innerHTML = instrumentos.map(inst => `
-        <div class="instrument-card" style="background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #c57d56;">
-            <h3 style="color: #c57d56; margin-bottom: 0.5rem; font-size: 1.25rem; font-weight: bold;">
+    grid.innerHTML = instrumentos.map(inst => {
+        // Generar nombre de clase basado en el riesgo (ej: 'risk-bajo', 'risk-alto')
+        const riesgoClass = `risk-${inst.riesgo.toLowerCase()}`;
+
+        return `
+        <div class="instrument-card">
+            <h3 class="instrument-name">
                 ${inst.nombre}
             </h3>
-            <div style="margin-bottom: 1rem; display: flex; gap: 10px; flex-wrap: wrap;">
-                <span style="background: #eee; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">
-                    Riesgo: ${inst.riesgo.toUpperCase()}
+            
+            <div class="badge-container">
+                <span class="risk-badge ${riesgoClass}">
+                    RIESGO: ${inst.riesgo.replace('_', ' ').toUpperCase()}
                 </span>
-                <span style="background: #e3f2fd; color: #1565c0; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">
+                
+                <span class="type-badge">
                     ${inst.tipo.replace('_', ' ').toUpperCase()}
                 </span>
             </div>
-            <p style="color: #555; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">
+            
+            <p class="instrument-desc">
                 ${inst.descripcion}
             </p>
-            <div style="font-weight: bold; color: #2c3e50; padding-top: 10px; border-top: 1px solid #eee;">
-                📈 Rendimiento ref: <span style="color: #27ae60;">${inst.rendimiento_referencial}</span>
+            
+            <div class="instrument-yield">
+                📈 Rendimiento ref: <span>${inst.rendimiento_referencial}</span>
             </div>
         </div>
-    `).join('');
+    `}).join('');
 }

@@ -388,3 +388,101 @@ section {
         align-items: flex-start;
     }
 }
+
+/* --- Estilos de las Tarjetas de Instrumentos --- */
+
+.instrument-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-left: 6px solid #c57d56; /* Borde decorativo terracota */
+    transition: transform 0.3s ease;
+    color: #333; /* Texto base oscuro */
+}
+
+.instrument-card:hover {
+    transform: translateY(-5px);
+}
+
+.instrument-name {
+    color: #8d5638; /* Marrón intermedio */
+    margin-bottom: 0.8rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.badge-container {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Estilo Base del Badge */
+.risk-badge, .type-badge {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* --- COLORES DE RIESGO --- */
+
+/* Riesgo: BAJO (Verde) */
+.risk-bajo {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Riesgo: BAJO_MEDIO (Amarillo/Lima) */
+.risk-bajo_medio {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+/* Riesgo: MEDIO (Naranja) */
+.risk-medio {
+    background-color: #ffe5d0;
+    color: #9c4400;
+    border: 1px solid #f5c6cb;
+}
+
+/* Riesgo: ALTO (Rojo) */
+.risk-alto {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Estilo para el Tipo de Instrumento (Azul) */
+.type-badge {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+    border: 1px solid #bbdefb;
+}
+
+.instrument-desc {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+}
+
+.instrument-yield {
+    font-weight: 600;
+    color: #2c3e50;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+    font-size: 0.9rem;
+}
+
+.instrument-yield span {
+    color: #27ae60; /* Verde para el número de porcentaje */
+    font-size: 1rem;
+}
+
