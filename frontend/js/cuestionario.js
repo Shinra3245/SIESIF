@@ -145,38 +145,38 @@ const btnNext = document.getElementById('btnNext');
 // Función para mostrar la pregunta actual
 function showQuestion() {
     const current = questions[currentQuestionIndex];
-    
+
     // Actualizar número y título
     questionNumber.textContent = `${current.number}.`;
     questionTitle.textContent = current.question;
-    
+
     // Limpiar opciones anteriores
     optionsContainer.innerHTML = '';
-    
+
     // Crear nuevas opciones
     current.options.forEach((option) => {
         const label = document.createElement('label');
         label.className = 'option-item';
-        
+
         const input = document.createElement('input');
         input.type = 'radio';
         input.name = 'answer';
         input.value = option.value;
         input.className = 'option-radio';
-        
+
         const span = document.createElement('span');
         span.className = 'option-text';
         span.textContent = option.text;
-        
+
         label.appendChild(input);
         label.appendChild(span);
         optionsContainer.appendChild(label);
     });
-    
+
     // Añadir lógica de selección visual
     const optionItems = optionsContainer.querySelectorAll('.option-item');
     optionItems.forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
             optionItems.forEach(opt => opt.classList.remove('selected'));
             this.classList.add('selected');
             const radio = this.querySelector('.option-radio');
@@ -188,19 +188,19 @@ function showQuestion() {
 // Función para ir a la siguiente pregunta
 function nextQuestion() {
     const selectedOption = document.querySelector('input[name="answer"]:checked');
-    
+
     if (!selectedOption) {
         alert('Por favor selecciona una opción');
         return;
     }
-    
+
     answers.push({
         question: questions[currentQuestionIndex].number,
         answer: selectedOption.value
     });
-    
+
     currentQuestionIndex++;
-    
+
     if (currentQuestionIndex < questions.length) {
         showQuestion();
     } else {
@@ -211,9 +211,9 @@ function nextQuestion() {
 // Función para finalizar y conectar con el Backend
 async function finishQuestionnaire() {
     console.log('Enviando respuestas al Sistema Experto...');
-    
+
     const btnNext = document.getElementById('btnNext');
-    if(btnNext) {
+    if (btnNext) {
         btnNext.textContent = "Analizando...";
         btnNext.disabled = true;
     }
@@ -225,7 +225,7 @@ async function finishQuestionnaire() {
     });
 
     try {
-        const response = await fetch('http://127.0.0.1:5000/api/evaluar-perfil', {
+        const response = await fetch('/api/evaluar-perfil', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -248,7 +248,7 @@ async function finishQuestionnaire() {
     } catch (error) {
         console.error('Error:', error);
         alert('Error al conectar con el servidor: ' + error.message);
-        if(btnNext) {
+        if (btnNext) {
             btnNext.textContent = "Reintentar";
             btnNext.disabled = false;
         }
