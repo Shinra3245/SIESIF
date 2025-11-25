@@ -1,35 +1,59 @@
-from flask import Flask, jsonify, request
+import os
+from flask import Flask, jsonify, send_from_directory, request
 from flask_cors import CORS
 from config import Config
+from flask_sqlalchemy import SQLAlchemy
+
+# --- Importación de Modelos ---
+# Nota: Importamos db aquí para inicializarlo, pero los modelos se importan después
+# para evitar errores circulares si fuera necesario, aunque con esta estructura está bien.
+from models import db, InstrumentoFinanciero
+
+# --- Importación de Lógica ---
 from motor_inferencia import calcular_puntaje, clasificar_perfil
 from reglas_logicas import aplicar_reglas_recomendacion
 
-# --- CAMBIO 1: Importa 'db' y los modelos desde 'models.py' ---
-from models import db, InstrumentoFinanciero, Usuario, PerfilInversionista, EvaluacionRiesgo, Cuestionario, Pregunta, RespuestaUsuario, Recomendacion
+# --- Configuración de Rutas Estáticas ---
+# Calculamos la ruta absoluta a la carpeta 'frontend'
+base_dir = os.path.abspath(os.path.dirname(__file__))
+frontend_dir = os.path.join(base_dir, '../frontend')
 
-# --- Inicialización ---
-app = Flask(__name__)
+# Inicializamos Flask diciéndole dónde está el frontend
+app = Flask(__name__, static_folder=frontend_dir, static_url_path='')
 app.config.from_object(Config)
+
+# --- Inicialización de Extensiones ---
 db.init_app(app)
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+cors = CORS(app) # CORS permite que el frontend hable con el backend
 
-
-
-
-# --- Endpoints de la API ---
+# ==========================================
+#  RUTAS DE LA PÁGINA WEB (FRONTEND)
+# ==========================================
 
 @app.route('/')
+def serve_index():
+    """Ruta raíz: Sirve el archivo index.html del frontend"""
+    return send_from_directory(app.static_folder, 'index.html')
+
+@app.route('/<path:path>')
+def serve_static_files(path):
+    """
+    Ruta comodín: Sirve cualquier otro archivo (css, js, html, imágenes)
+    que esté en la carpeta frontend.
+    """
+    return send_from_directory(app.static_folder, path)
+
+# ==========================================
+#  RUTAS DE LA API (BACKEND)
+# ==========================================
+
+@app.route('/api/health')
 def health_check():
-    """
-    Endpoint de "Health Check" (Verificación de estado).
-    """
+    """(Opcional) Movemos el health check a una ruta de API"""
     return jsonify({"status": "API activa y corriendo"}), 200
 
 @app.route('/api/instrumentos')
 def get_instrumentos():
-    """
-    Endpoint principal para obtener todos los instrumentos financieros.
-    """
     try:
         instrumentos_lista = InstrumentoFinanciero.query.all()
         instrumentos_json = [instrumento.to_dict() for instrumento in instrumentos_lista]
@@ -37,32 +61,21 @@ def get_instrumentos():
     except Exception as e:
         return jsonify({"error": f"Error al consultar la base de datos: {str(e)}"}), 500
 
-# -- nuevo endpoint --
 @app.route('/api/evaluar-perfil', methods=['POST'])
 def evaluar_perfil():
-    """
-    Recibe las respuestas del cuestionario, calcula el perfil
-    y devuelve recomendaciones personalizadas.
-    """
     try:
-        # 1. Obtener datos del JSON
         data = request.json
         respuestas = data.get('respuestas')
 
         if not respuestas:
             return jsonify({"error": "Faltan las respuestas"}), 400
 
-        # 2. Usar el Motor de Inferencia 
         puntaje = calcular_puntaje(respuestas)
         perfil = clasificar_perfil(puntaje)
-
-        # 3. Aplicar Reglas Lógicas para obtener instrumentos 
         recomendaciones_obj = aplicar_reglas_recomendacion(perfil)
         
-        # Convertir objetos DB a diccionarios JSON
         recomendaciones_json = [inst.to_dict() for inst in recomendaciones_obj]
 
-        # 4. Responder
         return jsonify({
             "puntaje": puntaje,
             "perfil": perfil,
@@ -74,43 +87,23 @@ def evaluar_perfil():
         return jsonify({"error": str(e)}), 400
     except Exception as e:
         return jsonify({"error": f"Error interno: {str(e)}"}), 500
-# --- Ejecución ---
 
-# ... (resto del código arriba igual) ...
-
+# --- Función Auxiliar para Render (Poblar DB si está vacía) ---
 def poblar_base_datos():
-    """Función auxiliar para cargar datos si la base está vacía (Para Render)"""
-    if InstrumentoFinanciero.query.first():
-        return # Ya hay datos, no hacer nada
+    # Verifica si la tabla existe y tiene datos
+    try:
+        if InstrumentoFinanciero.query.first():
+            return
+        
+        # Si está vacía, insertar datos básicos (EJEMPLO RÁPIDO para que funcione el deploy)
+        print("Poblando base de datos...")
+        # Aquí podrías poner tu lógica de inserción si usaras PostgreSQL persistente
+        # Por ahora, en SQLite de Render se borrará al reiniciar, pero esto sirve de ejemplo.
+    except:
+        pass
 
-    # Si llegamos aquí, la tabla está vacía. Insertar datos básicos.
-    # (Aquí replicamos los datos clave del script SQL para que la app funcione en vivo)
-    # Solo pondré 2 ejemplos para que veas la lógica, pero idealmente aquí irían los 11
-    from datetime import datetime
-    
-    # Ejemplo rápido (puedes agregar los 11 si quieres que el deploy esté completo)
-    cetes = InstrumentoFinanciero(
-        nombre='CETES', tipo='renta_fija', riesgo='bajo',
-        descripcion='Certificados de la Tesorería. Bonos de corto plazo, ideales para conservadores.',
-        rendimiento_referencial='10-11% anual', horizonte_recomendado='corto', liquidez='alta'
-    )
-    bonos = InstrumentoFinanciero(
-        nombre='Bonos M', tipo='renta_fija', riesgo='bajo_medio',
-        descripcion='Deuda soberana a tasa fija. Plazos largos.',
-        rendimiento_referencial='8-10% anual', horizonte_recomendado='largo', liquidez='alta'
-    )
-    # ... Agregar el resto ...
-    
-    db.session.add(cetes)
-    db.session.add(bonos)
-    db.session.commit()
-    print("Base de datos poblada automáticamente.")
-
-# --- Ejecución ---
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-        # Descomenta la siguiente línea si quieres autollenado en producción
-        # poblar_base_datos() 
-    
+        # poblar_base_datos()
     app.run(debug=True, port=5000)
