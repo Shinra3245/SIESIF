@@ -203,8 +203,12 @@ Proyecto desarrollado por estudiantes del Instituto Tecnológico Nacional de Mé
 * **Christian Raúl Paramo Bautista** - Lógica de Negocio & Reglas del Sistema.
 
 
-Puedes probar el proyecto con su Deploy en el siguiente enlace
-![SIESIF](https://siesif.onrender.com)
+## 🌐 Demo en Vivo
+Puedes probar el proyecto con su Deploy en el siguiente enlace:
+
+[![SIESIF](https://img.shields.io/badge/SIESIF-Ir%20al%20Sitio%20Web-blue?style=for-the-badge&logo=render)](https://siesif.onrender.com)
+
+> [cite_start]**Nota:** El sistema se encuentra actualmente en la **Fase 2 - Implementación** [cite: 236][cite_start], por lo que algunas funcionalidades del catálogo completo de 11 instrumentos financieros [cite: 45] podrían estar en proceso de actualización en el entorno de producción.
 
 ## 📄 Licencia
 
